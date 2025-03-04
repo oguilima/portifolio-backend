@@ -6,6 +6,6 @@ export interface Projeto extends Document{
     cliente: string,
     description: string,
     github?: string,
-    techs: Tecnologia[],
+    techs: Array<Tecnologia>,
     imagemUrl: string,
 }

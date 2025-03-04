@@ -16,6 +16,10 @@ export class ProjetoDto {
     @IsString()
     imagemUrl?: string;
 
-    //@IsArray()
-    //readonly techs: Array<Tecnologia>;  
+    @IsArray()
+    techs: Array<Tecnologia>;  
+
+    @IsOptional()
+    @IsString()
+    github?: string;
 }
