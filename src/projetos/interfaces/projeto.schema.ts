@@ -7,4 +7,5 @@ export const ProjetoSchema = new mongoose.Schema({
     description: String,
     github: String,
     techs: Array<Tecnologia>,
+    imagemUrl: String
 }, { timestamps: true, collection: 'projetos' });
