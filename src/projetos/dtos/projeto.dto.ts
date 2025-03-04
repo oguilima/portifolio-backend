@@ -16,6 +16,6 @@ export class ProjetoDto {
     @IsString()
     imagemUrl?: string;
 
-    @IsArray()
-    readonly techs: Array<Tecnologia>;  
+    //@IsArray()
+    //readonly techs: Array<Tecnologia>;  
 }
