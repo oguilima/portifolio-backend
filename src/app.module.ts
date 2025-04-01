@@ -2,23 +2,26 @@ import { Module } from '@nestjs/common';
 import { ProjetosController } from './projetos/projetos.controller';
 import { ProjetosModule } from './projetos/projetos.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './helpers/auth/auth.module';
+import { AuthController } from './helpers/auth/auth.controller';
 
 @Module({
-  imports: [MongooseModule.forRootAsync({
-    imports: [ConfigModule],
-    inject: [ConfigService],
-    useFactory: (configService: ConfigService) => ({
-      uri: configService.get<string>('DB_LINK'),
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
     }),
-  }), ConfigModule.forRoot({
-    isGlobal: true,
-    envFilePath: '.env',
-  }), ProjetosModule],
-  controllers: [ProjetosController],
+    MongooseModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('DB_LINK'),
+      }),
+    }),
+    AuthModule,
+    ProjetosModule,
+  ],
+  controllers: [ProjetosController, AuthController],
   providers: [],
 })
-export class AppModule {
-
-}
+export class AppModule {}
