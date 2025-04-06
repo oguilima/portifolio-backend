@@ -26,9 +26,6 @@ import { AuthService } from 'src/helpers/auth/auth.service';
 export class ProjetosController {
     constructor(private readonly projetosService: ProjetosService, private authService: AuthService) { }
 
-
-  
-
     @Post()
     @UseGuards(AuthGuard('jwt'))
     @UsePipes(new ValidationPipe({ transform: true, whitelist: true }))
