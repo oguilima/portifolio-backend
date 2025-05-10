@@ -12,7 +12,6 @@ export class ProjetoDto {
     @IsNotEmpty()
     readonly description: string;  
 
-    @IsOptional()
     @IsString()
     imagemUrl?: string;
 
